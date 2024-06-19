@@ -14,7 +14,17 @@ public class Unit : MonoBehaviour
     private Resource _carriedResource;
     private Flag _targetFlag;
 
-    public bool IsBusy { get;  set; } = false;
+    private bool _isBusy;
+
+    public bool IsBusy()
+    {
+        return _isBusy;
+    }
+
+    public bool ToFreeBot()
+    {
+        return _isBusy = false;
+    }
 
     public void SetBaseSpawner(BaseSpawner baseSpawner)
     {
@@ -26,7 +36,7 @@ public class Unit : MonoBehaviour
         if (targetComponent == null)
             return;
 
-        IsBusy = true;
+        _isBusy = true;
 
         if (targetComponent is Resource resource)
         {
@@ -49,9 +59,10 @@ public class Unit : MonoBehaviour
     {
         Vector3 newBasePosition = new Vector3(_targetFlag.transform.position.x, 1.01f, _targetFlag.transform.position.z);
         Base newBase = _baseSpawner.Spawn(newBasePosition, _targetFlag);
-        _base.RemoveFlag(this);
 
+        _base.RemoveFlag(this);
         _base = newBase;
+
         newBase.AddBot(this);
 
         _targetFlag = null;
@@ -79,7 +90,7 @@ public class Unit : MonoBehaviour
         _carriedResource.Release();
         _carriedResource = null;
 
-        IsBusy = false;
+        _isBusy = false;
     }
 
     private IEnumerator MoveToTarget(Transform target, float stopDistance, Action onComplete)
