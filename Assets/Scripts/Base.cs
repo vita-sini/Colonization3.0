@@ -40,7 +40,7 @@ public class Base : MonoBehaviour
             CreateBot(_startCountBots);
         }
 
-        StartCoroutine(CollectResourcesRoutine());
+        StartCoroutine(SetGoalsRoutine());
     }
 
     public void SetResourceData(ResourceData resourceData)
@@ -110,7 +110,7 @@ public class Base : MonoBehaviour
         {
             _bots.Remove(unit);
             unit.SetBaseBot(null);
-            unit.IsBusy = false;
+            unit.ToFreeBot();
         }
     }
 
@@ -118,7 +118,7 @@ public class Base : MonoBehaviour
     {
         foreach (Unit bot in _bots)
         {
-            if (bot.IsBusy == false)
+            if (bot.IsBusy() == false)
             {
                 bot.SetDestination(_flag);
                 _resourceCount -= _resourcesForNewBase;
@@ -152,7 +152,7 @@ public class Base : MonoBehaviour
         }
     }
 
-    private IEnumerator CollectResourcesRoutine()
+    private IEnumerator SetGoalsRoutine()
     {
         var waitSeconds = new WaitForSeconds(_resourceCollectionDelay);
 
@@ -169,7 +169,7 @@ public class Base : MonoBehaviour
         {
             foreach (Unit bot in _bots)
             {
-                if (bot.IsBusy == false)
+                if (bot.IsBusy() == false)
                 {
                     bot.SetDestination(_flag); 
                     _resourceCount -= _resourcesForNewBase; 
@@ -190,7 +190,7 @@ public class Base : MonoBehaviour
 
                 foreach (Unit bot in _bots)
                 {
-                    if (bot.IsBusy == false)
+                    if (bot.IsBusy() == false)
                     {
                         _resourceData.OccupyResource(resource);
                         bot.SetDestination(resource);

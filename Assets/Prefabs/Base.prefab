@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _botPrefab: {fileID: -3267858507356909915, guid: db9412f08ab5e7747b295f983dc8cfca, type: 3}
-  _baseSpawner: {fileID: 0}
+  _baseSpawner: {fileID: 5325612075993205124, guid: 8db63c18b491a7c4f9198afecb8e4a13, type: 3}
 --- !u!114 &1287574794416767443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,4 +401,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608b7016ee744df45be8a7e509f31d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceData: {fileID: 0}
+  _resourceData: {fileID: 4637221353616134429, guid: 85fbec5c147896649b3dac9c85ea54d2, type: 3}
+  _botSpawner: {fileID: 6363478149437157893, guid: 3c4458260670b514580143f2108e2fe2, type: 3}
